@@ -1,0 +1,324 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Turtles website",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "basePath": "/sa",
+  "paths": {
+    "/turtles": {
+      "get": {
+        "summary": "Get all turtles",
+        "description": "Retrieves the list of turtles",
+        "responses": {
+          "200": {
+            "description": "The list of turtles",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Turtle"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a turtle",
+        "parameters": [
+          {
+            "name": "turtle",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewTurtle"
+            }
+          }
+        ],
+        "description": "Creates a single turtle",
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "The newly created turtle",
+            "schema": {
+              "$ref": "#/definitions/Turtle"
+            }
+          }
+        }
+      }
+    },
+    "/turtles/L1/{ScientificName}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "ScientificName",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "Get single turtle",
+        "description": "Get turtle by ScientificName",
+        "responses": {
+          "200": {
+            "description": "Single turtle",
+            "schema": {
+              "$ref": "#/definitions/Turtle"
+            }
+          }
+        }
+      }
+    },
+    "/turtles/L2/{EnglishName}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "EnglishName",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "Get single turtle",
+        "description": "Get turtle by EnglishName",
+        "responses": {
+          "200": {
+            "description": "Single turtle",
+            "schema": {
+              "$ref": "#/definitions/Turtle"
+            }
+          }
+        }
+      }
+    },
+    "/turtles/{Family}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "Family",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "Get single turtle",
+        "description": "Get turtle by Family",
+        "responses": {
+          "200": {
+            "description": "Single turtle",
+            "schema": {
+              "$ref": "#/definitions/Turtle"
+            }
+          }
+        }
+      }
+    },
+    "/pairs": {
+      "get": {
+        "summary": "Get all turtle-food pairs",
+        "description": "Retrieves list of turtle-food pairs",
+        "responses": {
+          "200": {
+            "description": "The list of turtle-food pairs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pair"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pairs?turtleName={turtleName}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "turtleName",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "Get a turtle-food pairs",
+        "description": "Retrieves list of turtle-food pairs by turtle's name",
+        "responses": {
+          "200": {
+            "description": "The list of turtle-food pairs by turtle's name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pair"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pairs?foodid={foodid}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "foodid",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "summary": "Get a turtle-food pairs",
+        "description": "Retrieves list of turtle-food pairs by food",
+        "responses": {
+          "200": {
+            "description": "The list of turtle-food pairs by food",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pair"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/foods": {
+      "get": {
+        "summary": "Get all foods",
+        "description": "Retrieves the list of foods",
+        "responses": {
+          "200": {
+            "description": "The list of foods",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a food",
+        "parameters": [
+          {
+            "name": "food",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewFood"
+            }
+          }
+        ],
+        "description": "Creates a single food",
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "The newly created food",
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        }
+      }  
+    },
+    "/foods/{foodid}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "foodid",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "summary": "Get single turtle's food",
+        "description": "Get food by id",
+        "responses": {
+          "200": {
+            "description": "Single turtle's food",
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        }
+      }
+    }
+
+  },
+  "definitions": {
+    "Turtle": {
+      "type": "object",
+      "properties": {
+        "ScientificName": {
+          "type": "string"
+        },
+        "EnglishName": {
+          "type": "string"
+        },
+        "Family": {
+          "type": "string"
+        },
+        "LivedYears": {
+          "type": "string"
+        },
+        "InterestingFact": {
+          "type": "string"
+        }
+      }
+    },
+    "NewTurtle": {
+      "type": "object",
+      "properties": {
+        "ScientificName": {
+          "type": "string"
+        },
+        "EnglishName": {
+          "type": "string"
+        },
+        "Family": {
+          "type": "string"
+        },
+        "LivedYears": {
+          "type": "string"
+        },
+        "InterestingFact": {
+          "type": "string"
+        }
+        }
+      },
+      "Pair": {
+        "type": "object",
+        "properties": {
+          "turtleName": {
+            "type": "string"
+          },
+          "foodid": {
+            "type": "integer"
+          } 
+        }
+      },
+      "Food": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "NewFood": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+  }
+}
